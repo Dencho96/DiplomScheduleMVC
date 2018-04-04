@@ -1,0 +1,40 @@
+﻿@model List<DiplomScheduleMVC.Models.Schedule>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Книжный магазин</title>
+</head>
+<body>
+    
+    <div>
+        <table class="table">
+            <tr>
+                <th>Група</th>
+                <th>Аудиторія</th>
+                <th>День</th>
+                <th>Пара</th>
+                <th>Предмет</th>
+                <th>Викладач</th>
+            </tr>
+        @foreach (var b in Model)
+            {
+            <tr>
+                <td><p>@b.Group.GroupName</p></td>
+                <td><p>@b.Auditory.AuditoryNumber</p></td>
+                <td><p>@b.Day.DayName</p></td>
+                <td><p>@b.Pair.PairNumber</p></td>
+                <td><p>@b.Subject.SubjectName</p></td>
+                <td><p>@b.Teacher.TeacherName</p></td>
+            </tr>
+        }
+        </table>
+    </div>
+</body>
+</html>

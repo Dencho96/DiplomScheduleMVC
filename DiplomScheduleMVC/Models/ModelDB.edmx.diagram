@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7215612058244ef3af06177f01d58a96" Name="Diagram1">
+        <EntityTypeShape EntityType="student05Model.Auditory" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Day" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Group" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Pair" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Schedule" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Subject" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="student05Model.Teacher" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Aud" ManuallyRouted="false" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Day" ManuallyRouted="false" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Pair" ManuallyRouted="false" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Subj" ManuallyRouted="false" />
+        <AssociationConnector Association="student05Model.FK_Schedule_Teach" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
