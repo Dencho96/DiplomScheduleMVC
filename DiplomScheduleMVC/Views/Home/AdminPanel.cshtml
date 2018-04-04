@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Адмін Панель";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Адмін Панель</title>
+</head>
+<body>
+    <div class="buttonAdmin">@Html.ActionLink("Розклад","","Schedules")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Групи", "", "Groups")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Номер Пари", "", "Pairs")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Предмети", "", "Subjects")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Викладачі", "", "Teschers")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Дні", "", "Days")</div>
+    <div class="buttonAdmin">@Html.ActionLink("Аудиторії", "", "Auditories")</div>
+</body>
+</html>
+
