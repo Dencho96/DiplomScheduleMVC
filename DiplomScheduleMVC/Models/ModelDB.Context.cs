@@ -13,10 +13,10 @@ namespace DiplomScheduleMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class student05Entities : DbContext
+    public partial class Diplom_VovkEntities : DbContext
     {
-        public student05Entities()
-            : base("name=student05Entities")
+        public Diplom_VovkEntities()
+            : base("name=Diplom_VovkEntities")
         {
         }
     

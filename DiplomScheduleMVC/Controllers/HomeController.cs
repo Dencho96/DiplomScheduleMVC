@@ -13,7 +13,7 @@ namespace DiplomScheduleMVC.Controllers
     {
         public ActionResult Index()
         {
-            using (student05Entities db = new student05Entities())
+            using (Diplom_VovkEntities db = new Diplom_VovkEntities())
             {
                 var result = db.Schedule.Include(x => x.Group).Include(x => x.Auditory).Include(x => x.Day).Include(x => x.Pair).Include(x => x.Subject).Include(x => x.Teacher).ToList();
                 return View(result.OrderBy(x => x.Day.DayID).ToList());

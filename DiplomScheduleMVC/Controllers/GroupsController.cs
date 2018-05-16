@@ -12,7 +12,7 @@ namespace DiplomScheduleMVC.Controllers
 {
     public class GroupsController : Controller
     {
-        private student05Entities db = new student05Entities();
+        private Diplom_VovkEntities db = new Diplom_VovkEntities();
         
         // GET: Groups
         public ActionResult Index()
