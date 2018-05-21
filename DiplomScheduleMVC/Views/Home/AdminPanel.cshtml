@@ -10,13 +10,20 @@
     <meta name="viewport" content="width=device-width" />
     <title>Адмін Панель</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+            $(document).ready(function() {
+                $("body").css("display", "none");
+                $("body").fadeIn(2000);
+        });
+</script>
 <body>
     <div class="buttonBlock">
     <div class="buttonAdmin"><p>@Html.ActionLink("Розклад", "", "Schedules")</p></div>
     <div class="buttonAdmin"><p>@Html.ActionLink("Групи", "", "Groups")</p></div>
     <div class="buttonAdmin"><p>@Html.ActionLink("Номер Пари", "", "Pairs")</p></div>
     <div class="buttonAdmin"><p>@Html.ActionLink("Предмети", "", "Subjects")</p></div>
-    <div class="buttonAdmin"><p>@Html.ActionLink("Викладачі", "", "Teschers")</p></div>
+    <div class="buttonAdmin"><p>@Html.ActionLink("Викладачі", "", "Teachers")</p></div>
     <div class="buttonAdmin"><p>@Html.ActionLink("Дні", "", "Days")</p></div>
     <div class="buttonAdmin"><p>@Html.ActionLink("Аудиторії", "", "Auditories")</p></div>
     </div>

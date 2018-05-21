@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<DiplomScheduleMVC.Models.Schedule>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Розклад";
 }
 
-<h2>Index</h2>
+<h2>Розклад</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Додати", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ScheduleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ScheduleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ScheduleID })
+            @Html.ActionLink("Редагувати", "Edit", new { id=item.ScheduleID }) |
+            @Html.ActionLink("Деталі", "Details", new { id=item.ScheduleID }) |
+            @Html.ActionLink("Видалити", "Delete", new { id=item.ScheduleID })
         </td>
     </tr>
 }
