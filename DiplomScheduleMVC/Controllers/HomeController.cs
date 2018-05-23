@@ -15,7 +15,7 @@ namespace DiplomScheduleMVC.Controllers
         {
             using (Diplom_VovkEntities db = new Diplom_VovkEntities())
             {
-                var result = db.Schedule.Include(x => x.Group).Include(x => x.Auditory).Include(x => x.Day).Include(x => x.Pair).Include(x => x.Subject).Include(x => x.Teacher).ToList();
+                var result = db.Schedule.Include(x => x.Group).Include(x => x.Auditory).Include(x => x.Day).Include(x => x.Pair).Include(x => x.Subject).Include(x => x.Teacher).OrderBy(x => x.Group.GroupID).ToList();
                 return View(result.OrderBy(x => x.Day.DayID).ToList());
             }
         }
