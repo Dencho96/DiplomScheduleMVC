@@ -1,5 +1,5 @@
 ﻿@model List<DiplomScheduleMVC.Models.Schedule>
-
+@using DiplomScheduleMVC.Models;
 @{
     ViewBag.Title = "Головна";
 }
@@ -19,38 +19,55 @@
         });
 </script>
 <body>
+    @{ 
+//var Groups = (List<string>)ViewData["GroupList"];
+    }
     <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
         Виберіть групу
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="#">Inf1-B14</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
+        @foreach (var b in ViewData["group"] as List<Group>)
+        {
+            <li>
+                <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
+
+            </li>
+        }
+    @*@foreach (var b in ViewBag.Groups)
+    {
+      <li><a href="#">@b.</a></li>
+    }*@
     </ul>
   </div>
-    <div>
-        <table class="table">
-            <tr>
-                <th>Група</th>
-                <th>Аудиторія</th>
-                <th>День</th>
-                <th>Пара</th>
-                <th>Предмет</th>
-                <th>Викладач</th>
-            </tr>
-        @foreach (var b in Model)
-            {
-            <tr>
-                <td><p>@b.Group.GroupName</p></td>
-                <td><p>@b.Auditory.AuditoryNumber</p></td>
-                <td><p>@b.Day.DayName</p></td>
-                <td><p>@b.Pair.PairNumber</p></td>
-                <td><p>@b.Subject.SubjectName</p></td>
-                <td><p>@b.Teacher.TeacherName</p></td>
-            </tr>
-        }
-        </table>
-    </div>
+
+    @*@Html.DropDownList("GroupID", ViewBag.Groups as SelectList);*@
+    @if (ViewBag.groupId != 0)
+    {
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Група</th>
+                    <th>Аудиторія</th>
+                    <th>День</th>
+                    <th>Пара</th>
+                    <th>Предмет</th>
+                    <th>Викладач</th>
+                </tr>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <td><p>@b.Group.GroupName</p></td>
+                        <td><p>@b.Auditory.AuditoryNumber</p></td>
+                        <td><p>@b.Day.DayName</p></td>
+                        <td><p>@b.Pair.PairNumber</p></td>
+                        <td><p>@b.Subject.SubjectName</p></td>
+                        <td><p>@b.Teacher.TeacherName</p></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    
 </body>
 </html>
