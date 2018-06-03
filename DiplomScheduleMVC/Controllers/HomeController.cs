@@ -11,6 +11,7 @@ namespace DiplomScheduleMVC.Controllers
 {
     public class HomeController : Controller
     {
+        //private Diplom_VovkEntities db = new Diplom_VovkEntities();
         public ActionResult Index(int groupId=0)
         {
             using (Diplom_VovkEntities db = new Diplom_VovkEntities())
@@ -34,6 +35,16 @@ namespace DiplomScheduleMVC.Controllers
                         .ToList());
 
                 }
+            }
+        }
+        public PartialViewResult ViewPayDay(int groupId = 0, int numDay = 1, int numPay = 1)
+        {
+            using (Diplom_VovkEntities db = new Diplom_VovkEntities())
+            {
+                var result = db.Schedule.Include(x => x.Group).Include(x => x.Auditory).Include(x => x.Day).Include(x => x.Pair).Include(x => x.Subject).Include(x => x.Teacher).OrderBy(x => x.Group.GroupID).ToList();
+                // var list = result.Where(a => a.GroupID == groupId && a.DayID == numDay&&a.PairID==numPay).ToList();
+                result = result.Where(a => a.GroupID == groupId).Where(a => a.DayID == numDay).Where(a => a.Pair.PairID == numPay).ToList();
+                return PartialView(result);
             }
         }
 

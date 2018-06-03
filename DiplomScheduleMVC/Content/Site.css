@@ -63,5 +63,11 @@ footer {
 }
 
 .dropdown {
-    width: 50%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.dropdown-menu {
+    margin-left: 43%;
 }

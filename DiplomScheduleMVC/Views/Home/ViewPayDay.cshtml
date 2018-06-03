@@ -1,0 +1,7 @@
+﻿@model List<DiplomScheduleMVC.Models.Schedule>
+    @foreach(var b in Model)
+    {
+        <p>@b.Subject.SubjectName</p>
+        <p>@b.Teacher.TeacherName</p>
+        <p>@b.Auditory.AuditoryNumber</p>
+    }
