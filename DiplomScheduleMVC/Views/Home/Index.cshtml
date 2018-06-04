@@ -44,6 +44,9 @@
     @*@Html.DropDownList("GroupID", ViewBag.Groups as SelectList);*@
     @if (ViewBag.groupId != 0)
     {
+        <div class="For_Group">
+            <p>Розклад для групи</p>
+        </div>
         <div>
             <table class="table">
                 <tr>
@@ -67,6 +70,18 @@
                 }
             </table>
         </div>
+
+        <div>
+            <table class="table">
+                    <tr>
+                        @foreach (var b in Model)
+                        {
+                            <th>@b.Day.DayName</th>
+                        }
+                    </tr>
+            </table>
+        </div>
+
         @*@Html.Action("ViewPayDay", "Home", new { groupId = 4, numDay = 1, numPay = 1 })*@
         @*<div>
             <table class="table">
