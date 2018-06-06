@@ -1,7 +1,18 @@
 ﻿@model List<DiplomScheduleMVC.Models.Schedule>
 @using DiplomScheduleMVC.Models;
+@using Pair = DiplomScheduleMVC.Models.Pair
 @{
     ViewBag.Title = "Головна";
+    List<Day> days = new List<Day>();
+    if (ViewData["dayList"] != null)
+    {
+        days = ViewData["dayList"] as List<Day>;
+    }
+    List<Pair> pairs = new List<Pair>();
+    if (ViewData["pairList"] != null)
+    {
+        pairs = ViewData["pairList"] as List<Pair>;
+    }
 }
 
 <!DOCTYPE html>
@@ -13,196 +24,70 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-            $(document).ready(function() {
-                $("body").css("display", "none");
-                $("body").fadeIn(2000);
-        });
+    $(document).ready(function () {
+        $("body").css("display", "none");
+        $("body").fadeIn(2000);
+    });
 </script>
 <body>
-    @{ 
-//var Groups = (List<string>)ViewData["GroupList"];
+    @{
+        //var Groups = (List<string>)ViewData["GroupList"];
     }
     <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        Виберіть групу
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-        @foreach (var b in ViewData["group"] as List<Group>)
-        {
-            <li>
-                <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
-            </li>
-        }
-    @*@foreach (var b in ViewBag.Groups)
-    {
-      <li><a href="#">@b.</a></li>
-    }*@
-    </ul>
-  </div>
-    
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Виберіть групу
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var b in ViewData["group"] as List<Group>)
+            {
+                <li>
+                    <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
+                </li>
+            }
+            @*@foreach (var b in ViewBag.Groups)
+                {
+                  <li><a href="#">@b.</a></li>
+                }*@
+        </ul>
+    </div>
+
     @*@Html.DropDownList("GroupID", ViewBag.Groups as SelectList);*@
     @if (ViewBag.groupId != 0)
     {
         <div class="For_Group">
             <p>Розклад для групи</p>
         </div>
-        <div>
-            <table class="table">
-                <tr>
-                    <th>Група</th>
-                    <th>Аудиторія</th>
-                    <th>День</th>
-                    <th>Пара</th>
-                    <th>Предмет</th>
-                    <th>Викладач</th>
-                </tr>
-                @foreach (var b in Model)
+        <table class="table">
+            <tr>
+                <th>Pair №</th>
+                @foreach (var day in days)
                 {
-                    <tr>
-                        <td><p>@b.Group.GroupName</p></td>
-                        <td><p>@b.Auditory.AuditoryNumber</p></td>
-                        <td><p>@b.Day.DayName</p></td>
-                        <td><p>@b.Pair.PairNumber</p></td>
-                        <td><p>@b.Subject.SubjectName</p></td>
-                        <td><p>@b.Teacher.TeacherName</p></td>
-                    </tr>
+                    <th>@day.DayName</th>
                 }
-            </table>
-        </div>
-        
-        <div>
-            @*<table class="table">
-                    <tr>
-                        <th></th>
-                        @foreach (var b in ViewData["dayList"] as List<Day>)
-                        {
-                            <th>@b.DayName</th>
-                        }
-                    </tr>
-                    @foreach (var b in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
+            </tr>
+            @foreach (var pair in pairs)
+            {
+                <tr>
+                    <td>@pair.PairNumber</td>
+                    @foreach (var day in days)
                     {
-                        <tr>
-                            <td>@b.PairNumber</td>
-                            @foreach (var i in Model)
+                        <td>
+                            @if (Model.Any(x => x.DayID == day.DayID && x.PairID == pair.PairID))
                             {
-                                <td>@i.</td>
+                            <span>Пара: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Subject.SubjectName</span>
+                            <br />
+                            <span>Прєпод: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Teacher.TeacherName</span>
+                            <br />
+
                             }
-                        </tr>
+                        </td>
                     }
-            </table>*@
+                </tr>
+            }
+        </table>
 
-            <table class="table">
-               @{ 
-                   var dayShowFlag = false;
-                   var pairShowFlag = false;
-                   var rowCount = 0;
-                   var columnCount = 0;
-                   foreach (var b in ViewData["dayList"] as List<Day>)
-                   {
-                       rowCount = rowCount + 1;
-                   }
-                   foreach (var b in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
-                   {
-                       columnCount = columnCount + 1;
-                   }
-               }
-               @foreach (var b in Model)
-               {
-                   <tr>
-                       @if (dayShowFlag == false)
-                       {
-                           foreach (var i in ViewData["dayList"] as List<Day>)
-                           {
-                               <th></th>
-                               <th>@i.DayName</th>
-                               dayShowFlag = true;
-                           }
-                       }
-                   </tr>
-                   if (pairShowFlag == false)
-                   {
-                       foreach (var i in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
-                       {
-                            <tr>
-                                <td>@i.PairNumber</td>
-                                <td><p>@b.Subject.SubjectName</p><p>@b.Teacher.TeacherName</p></td>
-                            </tr>
-                            pairShowFlag = true;
-
-                       }
-                   }
-                }
-            </table>
-
-        </div>
-
-        @*@Html.Action("ViewPayDay", "Home", new { groupId = 4, numDay = 1, numPay = 1 })*@
-        @*<div>
-            <table class="table">
-                <tr>
-                    <th>
-                        День
-                    </th>
-                    <th>
-                        Пн
-                    </th>
-                    <th>
-                        Вт
-                    </th>
-                    <th>
-                        Ср
-                    </th>
-                    <th>
-                        Чт
-                    </th>
-                    <th>
-                        Пт
-                    </th>
-                </tr>
-                @Html.Action("ViewPayDay", "Home", new { groupId = 4, numDay = 1, numPay = 1 })
-                <tr>
-                    <td>@Html.Action("ViewPayDay","Home",new { groupId=4, numDay=1, numPay=1 })</td>
-                    <td>2dgd</td>
-                    <td>3ASDSAD</td>
-                    <td>4afsafa</td>
-                    <td>5ASDSAD</td>
-                    <td>6afsafa</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2afsafa</td>
-                    <td>3ASDSAD</td>
-                    <td>4afsafa</td>
-                    <td>5ASDSAD</td>
-                    <td>6afsafa</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>2afsafa</td>
-                    <td>3ASDSAD</td>
-                    <td>4afsafa</td>
-                    <td>5ASDSAD</td>
-                    <td>6afsafa</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>2afsafa</td>
-                    <td>3ASDSAD</td>
-                    <td>4afsafa</td>
-                    <td>5ASDSAD</td>
-                    <td>6afsafa</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>2afsafa</td>
-                    <td>3ASDSAD</td>
-                    <td>4afsafa</td>
-                    <td>5ASDSAD</td>
-                    <td>6afsafa</td>
-                </tr>
-            </table>
-        </div>*@
     }
-    
+
 </body>
 </html>
