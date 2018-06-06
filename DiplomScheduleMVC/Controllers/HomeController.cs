@@ -21,6 +21,7 @@ namespace DiplomScheduleMVC.Controllers
 
                 ViewData["group"] = db.Group.ToList();
                 ViewData["dayList"] = db.Day.ToList();
+                ViewData["pairList"] = db.Pair.ToList();
 
                 ViewBag.groupId = groupId;
                 //ViewBag.Groups = groups;
@@ -31,8 +32,7 @@ namespace DiplomScheduleMVC.Controllers
                 }
                 else
                 {
-                    return View(result
-                        .OrderBy(x => x.Day.DayID)
+                    return View(result.OrderBy(x => x.Pair.PairID)
                         .Where(b => b.GroupID == groupId)
                         .ToList());
 

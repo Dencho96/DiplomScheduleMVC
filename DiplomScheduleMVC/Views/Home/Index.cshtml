@@ -71,7 +71,7 @@
         </div>
         
         <div>
-            <table class="table">
+            @*<table class="table">
                     <tr>
                         <th></th>
                         @foreach (var b in ViewData["dayList"] as List<Day>)
@@ -79,11 +79,61 @@
                             <th>@b.DayName</th>
                         }
                     </tr>
-                    @foreach (var b in Model)
+                    @foreach (var b in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
                     {
-                        <td
+                        <tr>
+                            <td>@b.PairNumber</td>
+                            @foreach (var i in Model)
+                            {
+                                <td>@i.</td>
+                            }
+                        </tr>
                     }
+            </table>*@
+
+            <table class="table">
+               @{ 
+                   var dayShowFlag = false;
+                   var pairShowFlag = false;
+                   var rowCount = 0;
+                   var columnCount = 0;
+                   foreach (var b in ViewData["dayList"] as List<Day>)
+                   {
+                       rowCount = rowCount + 1;
+                   }
+                   foreach (var b in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
+                   {
+                       columnCount = columnCount + 1;
+                   }
+               }
+               @foreach (var b in Model)
+               {
+                   <tr>
+                       @if (dayShowFlag == false)
+                       {
+                           foreach (var i in ViewData["dayList"] as List<Day>)
+                           {
+                               <th></th>
+                               <th>@i.DayName</th>
+                               dayShowFlag = true;
+                           }
+                       }
+                   </tr>
+                   if (pairShowFlag == false)
+                   {
+                       foreach (var i in ViewData["pairList"] as List<DiplomScheduleMVC.Models.Pair>)
+                       {
+                            <tr>
+                                <td>@i.PairNumber</td>
+                                <td><p>@b.Subject.SubjectName</p><p>@b.Teacher.TeacherName</p></td>
+                            </tr>
+                            pairShowFlag = true;
+
+                       }
+                   }
+                }
             </table>
+
         </div>
 
         @*@Html.Action("ViewPayDay", "Home", new { groupId = 4, numDay = 1, numPay = 1 })*@
