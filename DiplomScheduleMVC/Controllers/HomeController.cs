@@ -20,6 +20,8 @@ namespace DiplomScheduleMVC.Controllers
                 //SelectList groups = new SelectList(db.Schedule.Include(x => x.Group).ToList(), "GroupID", "GroupName");
 
                 ViewData["group"] = db.Group.ToList();
+                ViewData["dayList"] = db.Day.ToList();
+
                 ViewBag.groupId = groupId;
                 //ViewBag.Groups = groups;
                 var result = db.Schedule.Include(x => x.Group).Include(x => x.Auditory).Include(x => x.Day).Include(x => x.Pair).Include(x => x.Subject).Include(x => x.Teacher).OrderBy(x => x.Group.GroupID).ToList();
@@ -36,6 +38,32 @@ namespace DiplomScheduleMVC.Controllers
 
                 }
             }
+        }
+        public ActionResult ViewIndex(int groupId = 0)
+        {
+            using (Diplom_VovkEntities db = new Diplom_VovkEntities())
+            {
+                ViewListIndexHome mode = new ViewListIndexHome()
+                {
+                    DayList = db.Day.ToList(),
+                    GroupList = db.Group.ToList(),
+                    ScheduleList = db.Schedule.ToList(),
+                    PairList = db.Pair.ToList(),
+                    TeacherList = db.Teacher.ToList(),
+                    AuditoryList = db.Auditory.ToList(),
+                    SubjectList = db.Subject.ToList()
+
+                };
+                return View(mode);
+                            //public DayList=new List<Day>(Db);
+                            //public GroupList;
+                            //public ScheduleList;
+                            //public PairList;
+                            //public TeacherList;
+                            //public AuditoryList;
+                            //public SubjectList;                            
+            }
+                return View();
         }
         //public PartialViewResult ViewPayDay(int groupId = 0, int numDay = 1, int numPay = 1)
         //{

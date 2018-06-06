@@ -19,7 +19,10 @@ namespace DiplomScheduleMVC.Controllers
         {
             return View(db.Day.ToList());
         }
-
+        public PartialViewResult DayView()
+        {
+            return PartialView(db.Day.ToList());
+        }
         // GET: Days/Details/5
         public ActionResult Details(int? id)
         {

@@ -31,7 +31,6 @@
         {
             <li>
                 <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
-
             </li>
         }
     @*@foreach (var b in ViewBag.Groups)
@@ -40,7 +39,7 @@
     }*@
     </ul>
   </div>
-
+    
     @*@Html.DropDownList("GroupID", ViewBag.Groups as SelectList);*@
     @if (ViewBag.groupId != 0)
     {
@@ -70,15 +69,20 @@
                 }
             </table>
         </div>
-
+        
         <div>
             <table class="table">
                     <tr>
-                        @foreach (var b in Model)
+                        <th></th>
+                        @foreach (var b in ViewData["dayList"] as List<Day>)
                         {
-                            <th>@b.Day.DayName</th>
+                            <th>@b.DayName</th>
                         }
                     </tr>
+                    @foreach (var b in Model)
+                    {
+                        <td
+                    }
             </table>
         </div>
 
