@@ -12,22 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Auditory.AuditoryID)
+            Аудиторія
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Day.DayName)
+            День
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Group.GroupName)
+            Група
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pair.PairID)
+            Номер Пари
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+            Предмет
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Teacher.TeacherName)
+            Викладач
         </th>
         <th></th>
     </tr>
@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Auditory.AuditoryID)
+            @Html.DisplayFor(modelItem => item.Auditory.AuditoryNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Day.DayName)
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Group.GroupName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Pair.PairID)
+            @Html.DisplayFor(modelItem => item.Pair.PairNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Subject.SubjectName)
