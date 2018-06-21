@@ -158,7 +158,6 @@
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
-    <Compile Include="Controllers\ViewListIndexHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
