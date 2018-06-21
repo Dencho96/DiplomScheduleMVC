@@ -89,6 +89,7 @@ namespace DiplomScheduleMVC.Controllers
         ////    }
         ////}
 
+        [Authorize]
         public ActionResult AdminPanel()
         {
             return View();
