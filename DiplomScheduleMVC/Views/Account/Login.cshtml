@@ -3,29 +3,29 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+
 
 
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4">
-            <h2>Login</h2>
+            <h2>Увійти в аккаунт</h2>
             @if (ViewBag.InvalidParameters != null)
             {
-                <div class="alert alert-danger">You've entered wrong username or password. Please, check</div>
+                <div class="alert alert-danger">Ви ввели неправильне ім'я користувача чи пароль</div>
             }
             @using (Html.BeginForm())
             {
-                @Html.Label("Username", new { htmlAttributes = new { @class = "form-control" } })<br />
+                @Html.Label("Ім'я користувача", new { htmlAttributes = new { @class = "form-control" } })<br />
                 @Html.Editor("username", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessage("Invalid username", null, new { @class = "alert-danger" })<br /><br />
-                @Html.Label("Password", new { htmlAttributes = new { @class = "form-control" } })<br />
-                @Html.Password("password")
+                @Html.Label("Пароль", new { htmlAttributes = new { @class = "form-control" } })<br />
+                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessage("Invalid password", null, new { @class = "alert-danger" })<br />
-
+                <br />
                 <p>
-                    <button type="submit" class="btn btn-info">Log In</button>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
                 </p>
 
             }
