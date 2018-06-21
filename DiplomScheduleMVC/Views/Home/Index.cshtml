@@ -2,7 +2,7 @@
 @using DiplomScheduleMVC.Models;
 @using Pair = DiplomScheduleMVC.Models.Pair
 @{
-    ViewBag.Title = "Головна";
+    ViewBag.Title = "Розклад занять";
     List<Day> days = new List<Day>();
     if (ViewData["dayList"] != null)
     {
@@ -30,37 +30,61 @@
     });
 </script>
 <body>
-    @{
-        //var Groups = (List<string>)ViewData["GroupList"];
-    }
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Виберіть групу
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            @foreach (var b in ViewData["group"] as List<Group>)
-            {
-                <li>
-                    <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
-                </li>
-            }
-            @*@foreach (var b in ViewBag.Groups)
+    
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Виберіть групу
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                @foreach (var b in ViewData["group"] as List<Group>)
                 {
-                  <li><a href="#">@b.</a></li>
-                }*@
-        </ul>
-    </div>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { groupId = b.GroupID })">@b.GroupName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    
+
+    
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Виберіть викладача
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                @foreach (var b in ViewData["teacher"] as List<Teacher>)
+                {
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { teacherId = b.TeacherID })">@b.TeacherName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    
 
     @*@Html.DropDownList("GroupID", ViewBag.Groups as SelectList);*@
     @if (ViewBag.groupId != 0)
     {
-        <div class="For_Group">
-            <p>Розклад для групи</p>
+         
+            var groupName = "";
+            var nameFlag = false;
+            if (nameFlag == false)
+            {
+                foreach (var b in Model)
+                {
+                    groupName = b.Group.GroupName;
+                    nameFlag = true;
+                }
+            }
+        
+        <div class="ForWhom">
+            <p>Розклад для <strong>@groupName</strong></p>
         </div>
         <table class="table">
             <tr>
-                <th>Pair №</th>
+                <th></th>
                 @foreach (var day in days)
                 {
                     <th>@day.DayName</th>
@@ -69,17 +93,18 @@
             @foreach (var pair in pairs)
             {
                 <tr>
-                    <td>@pair.PairNumber</td>
+                    <td><strong>@pair.PairNumber</strong></td>
                     @foreach (var day in days)
                     {
                         <td>
                             @if (Model.Any(x => x.DayID == day.DayID && x.PairID == pair.PairID))
                             {
-                            <span>Пара: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Subject.SubjectName</span>
+                            <span>Предмет: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Subject.SubjectName</span>
                             <br />
-                            <span>Прєпод: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Teacher.TeacherName</span>
+                            <span>Викладач: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Teacher.TeacherName</span>
                             <br />
-
+                            <span>Аудиторія: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Auditory.AuditoryNumber</span>
+                            <br />
                             }
                         </td>
                     }
@@ -87,6 +112,54 @@
             }
         </table>
 
+    }
+
+    @if (ViewBag.teacherId != 0)
+    {
+        var teacherName = "";
+        var nameFlag = false;
+        if (nameFlag == false)
+        {
+            foreach (var b in Model)
+            {
+                teacherName = b.Teacher.TeacherName;
+                nameFlag = true;
+            }
+        }
+
+        <div class="ForWhom">
+            <p>Розклад для <strong>@teacherName</strong></p>
+        </div>
+        <table class="table">
+            <tr>
+                <th></th>
+                @foreach (var day in days)
+                {
+                    <th>@day.DayName</th>
+                }
+            </tr>
+            @foreach (var pair in pairs)
+            {
+                <tr>
+                    <td><strong>@pair.PairNumber</strong></td>
+                    @foreach (var day in days)
+                    {
+                        <td>
+                            @if (Model.Any(x => x.DayID == day.DayID && x.PairID == pair.PairID))
+                            {
+                                <span>Предмет: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Subject.SubjectName</span>
+                                <br />
+                                <span>Група: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Group.GroupName</span>
+                                <br />
+                                <span>Аудиторія: @Model.FirstOrDefault(x => x.DayID == day.DayID && x.PairID == pair.PairID).Auditory.AuditoryNumber</span>
+                                <br />
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+       
     }
 
 </body>
