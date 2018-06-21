@@ -23,6 +23,20 @@
                     <li>@Html.ActionLink("Головна", "Index", "Home")</li>
                     <li>@Html.ActionLink("Адмін Панель", "AdminPanel", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="" title="Manage"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a>
+                        </li>
+                        <li><a href="@Url.Action("Logout", "Account" )"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login", "Account" )"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    }
+                </ul>
+
             </div>
         </div>
     </div>
