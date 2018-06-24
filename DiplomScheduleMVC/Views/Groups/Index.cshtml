@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<DiplomScheduleMVC.Models.Group>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Групи";
 }
 
-<h2>Index</h2>
+<h2>Групи</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Додати", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GroupName)
+            Група
         </th>
         <th></th>
     </tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.GroupName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GroupID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GroupID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GroupID })
+            @Html.ActionLink("Редагувати", "Edit", new { id=item.GroupID }) |
+            @Html.ActionLink("Деталі", "Details", new { id=item.GroupID }) |
+            @Html.ActionLink("Видалити", "Delete", new { id=item.GroupID })
         </td>
     </tr>
 }

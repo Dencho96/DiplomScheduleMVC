@@ -45,7 +45,7 @@ namespace DiplomScheduleMVC.Controllers
 
                 authManager.SignIn(identity);
 
-                return Redirect("/Home/Index");
+                return Redirect("/Home/AdminPanel");
             }
             else
             {

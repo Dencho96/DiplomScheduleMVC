@@ -18,9 +18,9 @@ namespace DiplomScheduleMVC.Controllers
         public ActionResult Index()
         {
             var schedule = db.Schedule.Include(s => s.Auditory).Include(s => s.Day).Include(s => s.Group).Include(s => s.Pair).Include(s => s.Subject).Include(s => s.Teacher);
-            return View(schedule.ToList());
+            return View(schedule.OrderBy(x => x.Group.GroupID));
         }
-
+                     
         // GET: Schedules/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,6 +37,7 @@ namespace DiplomScheduleMVC.Controllers
         }
 
         // GET: Schedules/Create
+
         public ActionResult Create()
         {
             ViewBag.AuditoryID = new SelectList(db.Auditory, "AuditoryID", "AuditoryID");
@@ -52,7 +53,7 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "ScheduleID,DayID,AuditoryID,PairID,SubjectID,TeacherID,GroupID")] Schedule schedule)
         {
             if (ModelState.IsValid)
@@ -72,6 +73,7 @@ namespace DiplomScheduleMVC.Controllers
         }
 
         // GET: Schedules/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,7 +98,7 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ScheduleID,DayID,AuditoryID,PairID,SubjectID,TeacherID,GroupID")] Schedule schedule)
         {
             if (ModelState.IsValid)
@@ -131,7 +133,6 @@ namespace DiplomScheduleMVC.Controllers
 
         // POST: Schedules/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Schedule schedule = db.Schedule.Find(id);

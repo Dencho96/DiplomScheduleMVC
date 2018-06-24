@@ -45,7 +45,6 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GroupID,GroupName")] Group group)
         {
             if (ModelState.IsValid)
@@ -77,7 +76,6 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GroupID,GroupName")] Group group)
         {
             if (ModelState.IsValid)
@@ -106,7 +104,6 @@ namespace DiplomScheduleMVC.Controllers
 
         // POST: Groups/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Group group = db.Group.Find(id);

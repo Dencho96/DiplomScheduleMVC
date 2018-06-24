@@ -48,7 +48,6 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DayID,DayName")] Day day)
         {
             if (ModelState.IsValid)
@@ -80,7 +79,6 @@ namespace DiplomScheduleMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DayID,DayName")] Day day)
         {
             if (ModelState.IsValid)
@@ -109,7 +107,6 @@ namespace DiplomScheduleMVC.Controllers
 
         // POST: Days/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Day day = db.Day.Find(id);

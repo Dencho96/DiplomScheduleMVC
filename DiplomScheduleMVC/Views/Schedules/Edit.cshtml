@@ -4,21 +4,20 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Редагувати запис</h2>
 
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Schedule</h4>
+        <h4>Розклад</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ScheduleID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DayID, "DayID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DayID, "День", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DayID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DayID, "", new { @class = "text-danger" })
@@ -26,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AuditoryID, "AuditoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AuditoryID, "Аудиторія", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("AuditoryID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AuditoryID, "", new { @class = "text-danger" })
@@ -34,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PairID, "PairID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PairID, "Пара", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("PairID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PairID, "", new { @class = "text-danger" })
@@ -42,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SubjectID, "SubjectID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SubjectID, "Предмет", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SubjectID, "", new { @class = "text-danger" })
@@ -50,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TeacherID, "TeacherID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TeacherID, "Викладач", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TeacherID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TeacherID, "", new { @class = "text-danger" })
@@ -58,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GroupID, "GroupID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GroupID, "Група", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("GroupID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
@@ -67,14 +66,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Зберегти" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Повернутись", "Index")
 </div>
 
 @section Scripts {
